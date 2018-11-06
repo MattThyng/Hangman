@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="home.css">
+    <title>Hangman</title>
+</head>
+<body>
+    <div id="man">
+        <img id="manPic" src="pictures/4.jpg">
+    </div>
+    <div id="displayWord"></div>
+    <div id="input">
+        <div id=row1>
+            <button onclick="keyStroke(this, 'q');" class="key">q</button>
+            <button onclick="keyStroke(this, 'w');" class="key">w</button>
+            <button onclick="keyStroke(this, 'e');" class="key">e</button>
+            <button onclick="keyStroke(this, 'r');" class="key">r</button>
+            <button onclick="keyStroke(this, 't');" class="key">t</button>
+            <button onclick="keyStroke(this, 'y');" class="key">y</button>
+            <button onclick="keyStroke(this, 'u');" class="key">u</button>
+            <button onclick="keyStroke(this, 'i');" class="key">i</button>
+            <button onclick="keyStroke(this, 'o');" class="key">o</button>
+            <button onclick="keyStroke(this, 'p');" class="key">p</button>
+        </div>
+        <div id=row2>
+            <button onclick="keyStroke(this, 'a');" class="key">a</button>
+            <button onclick="keyStroke(this, 's');" class="key">s</button>
+            <button onclick="keyStroke(this, 'q');" class="key">d</button>
+            <button onclick="keyStroke(this, 'f');" class="key">f</button>
+            <button onclick="keyStroke(this, 'g');" class="key">g</button>
+            <button onclick="keyStroke(this, 'h');" class="key">h</button>
+            <button onclick="keyStroke(this, 'j');" class="key">j</button>
+            <button onclick="keyStroke(this, 'k');" class="key">k</button>
+            <button onclick="keyStroke(this, 'l');" class="key">l</button>
+        </div>
+        <div id=row3>
+            <button onclick="keyStroke(this, 'z');" class="key">z</button>
+            <button onclick="keyStroke(this, 'x');" class="key">x</button>
+            <button onclick="keyStroke(this, 'c');" class="key">c</button>
+            <button onclick="keyStroke(this, 'v');" class="key">v</button>
+            <button onclick="keyStroke(this, 'b');" class="key">b</button>
+            <button onclick="keyStroke(this, 'n');" class="key">n</button>
+            <button onclick="keyStroke(this, 'm');" class="key">m</button>
+        </div>
+    </div>
+    <script src="jquery/jquery-3.3.1.js"></script>
+    <script>
+        var words = [
+             'pig',
+             'cow',
+             'chicken',
+             'human',
+             'elephant'
+         ];
+        var word = words[Math.floor(Math.random()*words.length)];
+        console.log(word);
+        var guesses = 0;
+        var imgNum = guesses + 4;
+        var dispWord = "";
+        for (i = 0; i < word.length; i++){
+            dispWord = dispWord + "-";
+        }
+        $(document).ready(function() {
+            $('#displayWord').html("<h2>" + dispWord + "</h2>");
+            //$('#man').hide(300).show(300);
+        });
+        
+        function findIndexes(str, letter){
+            var indexes = [];
+            var i = -1;
+            while((i = str.indexOf(letter, i+1))!=-1){
+                indexes.push(i);
+            }
+            return indexes;
+        }
+        function keyStroke(k, key){
+            var letter = key;
+            indexes = findIndexes(word, letter);
+            console.log(indexes);
+            k.disabled = true;
+            if(indexes.length == 0){
+                console.log(key + " not in word");
+                guesses = guesses + 1;
+                imgNum = imgNum + 1;
+                console.log(guesses);
+                var imgSrc = "pictures/" + imgNum.toString() + ".jpg";
+                console.log(imgSrc);
+                $('#manPic').attr('src', imgSrc);
+                if(guesses==6){
+                    alert("Game over");
+                }
+            }
+            else{
+                for(var i=0; i < indexes.length; i++){
+                    index = indexes[i];
+                    if(index==0){
+                        dispWord = letter + dispWord.substring(1, dispWord.length);
+                    }
+                    else{
+                        dispWord = dispWord.substring(0, index) + letter + dispWord.substring(index+1, dispWord.length);
+                    }
+                    $('#displayWord').html("<h2>" + dispWord + "</h2>");
+                    word = word.replace(letter, "*");
+                }
+            }
+            if(findIndexes(dispWord, "-").length==0){
+                alert("You Won!");
+            }
+        }
+    </script>
+</body>
+</html>
