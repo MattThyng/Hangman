@@ -54,6 +54,7 @@
              'elephant'
          ];
         var word = words[Math.floor(Math.random()*words.length)];
+        var originalWord = word;
         console.log(word);
         var guesses = 0;
         var imgNum = guesses + 4;
@@ -62,7 +63,9 @@
             dispWord = dispWord + "-";
         }
         $(document).ready(function() {
-            $('#displayWord').html("<h2>" + dispWord + "</h2>");
+            $('#displayWord').html("<h2>" + dispWord + "</h2>").hide().fadeIn(3000);
+            $('#man').hide().fadeIn(3000);
+            $('.key').hide().fadeIn(3000);
             //$('#man').hide(300).show(300);
         });
         
@@ -88,7 +91,9 @@
                 console.log(imgSrc);
                 $('#manPic').attr('src', imgSrc);
                 if(guesses==6){
+                    $('#displayWord').html("<h2>" + originalWord + "</h2>");
                     alert("Game over");
+                    $(':button').prop('disabled', true);
                 }
             }
             else{
