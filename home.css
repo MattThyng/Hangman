@@ -1,55 +1,66 @@
-#manPic {
-	height: 350px;
-	width: 200px;
-	margin-left: 208px;
-	margin-right: 208px;
-	background-color: RED;
+#heading {
+	height: 10%;
+	width: 100%;
+	background-color: rgb(32, 32, 32);
+	color: White;
+	margin: 0 0 0 0;
+	padding: 1px;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-#man {
-	margin: 0 auto;
-	height:350px;
-	width: 616px;
-	background-color: rgba(255, 255, 255 ,0.8);
-	box-shadow:10px 10px 10px rgba(0,0,0,0.5);
+#games {
+	height: 90%;
+	width: 100%;
+	margin: 0 0 0 0;
+	padding: 2%;
+	background-image: url(pictures/home_background.jpg);
+}
+html, body {
+	width: 100%;
+	height: 100%;
+	padding: 0px;
+	margin: 0 0 0 0;
 }
 
-#displayWord {
-	position: absolute;
-    top: 10px;
-    left: 8px;
-    height: 70px;
-	background-color: rgba(255, 255, 255 ,0.8);
-	box-shadow:10px 10px 10px rgba(0,0,0,0.5);
+h1 {
+	margin: 0 0 0 0;
+	font-size: 8vh;
 }
 
-h2 {
-	font-size: 40pt;
-	margin: 0;
-}
-#input {
-	width:616px;
-	margin: 0 auto;
+h3 {
+	font-size: 4vw;
+	
 }
 
-.key {
-	height: 50px;
-	width: 50px;
-	margin: 4px;
-	box-shadow:10px 10px 10px rgba(0,0,0,0.5);
-}
-#row2 {
-	margin-left:15px;
-}
-#row3 {
-	margin-left:45px;
+.game {
+	height: 25%;
+	width: 25%;
+	border: Black;
+	border-width: 1px;
+	border: solid;
+	border-radius: 10%;
+	box-shadow: 5px 5px 20px -1px rgba(0,0,0,0.6);
+	float: left;
+	margin: 2%;
+	background-color: White;
+	overflow: hidden;
+	background: url(pictures/gloomy-stripes-dark-background-tile.jpg);
 }
 
-.key:disabled {
-    background-color: darkred;
+.game:hover {
+	box-shadow: none;
+	cursor: pointer;
 }
-body {
-	min-height: 550px;
-	min-width: 785px;
-	background-image: url(pictures/gloomy-stripes-dark-background-tile.jpg);
+
+.gameTitle {
+	margin-top: 60%;
+	height:40%;
+	width:100%;
+	background: rgba(255,255,255, 0.8);
+	text-align: center;
+}
+
+#hangman {
+	background: url(pictures/gloomy-stripes-dark-background-tile.jpg);
 }
