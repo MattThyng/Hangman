@@ -44,22 +44,26 @@
     <script src="jquery/jquery-3.3.1.js"></script>
     <script>
         $(document).ready(function() {
-            $('.game').mouseover(function() {
-                $('.gameTitle').stop().animate({
-                    height: "100%",
-                    margin: "0%"
-                },2000, function() {
-                    $('.gameTitle').addClass('hovered');
+            $('.game').each(function(index, element){
+                console.log(element);
+                $(element).mouseover(function() {
+                    $(element).find('.gameTitle').stop().animate({
+                        height: "100%",
+                        margin: "0%"
+                    },2000, function() {
+                        $(element).find('.gameTitle').addClass('hovered');
+                    });
+                });
+                $(element).mouseleave(function() {
+                    $(element).find('.gameTitle').stop().animate({
+                        height: "40%",
+                        marginTop: "60%"
+                    },1000, function() {
+                        $(element).find('.gameTitle').removeClass('hovered');
+                    });
                 });
             });
-            $('.game').mouseleave(function() {
-                $('.gameTitle').stop().animate({
-                    height: "40%",
-                    marginTop: "60%"
-                },1000, function() {
-                    $('.gameTitle').removeClass('hovered');
-                });
-            });
+
         });
         $('#hangman').on('click', function(){
            window.location = 'hangman.html'; 
